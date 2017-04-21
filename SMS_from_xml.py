@@ -1,3 +1,10 @@
+"""
+Extract SMS from .xml file.
+
+If number is specified, it will be filtered by it.
+Created for Microsoft Lumia .msg file.
+"""
+
 import os
 from xml.etree import ElementTree
 import argparse
