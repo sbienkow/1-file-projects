@@ -12,11 +12,10 @@ def main():
     orient = '' if args.o == 'any' else args.o
     name = str(args.n).replace(' ', '+')
     url = ("https://pixabay.com/en/photos/?"
-            "q={}&"
-            "orientation={}&"
-            "min_width={}&"
-            "min_height={}")\
-            .format(name, orient, args.w, args.h)
+           "q={}&"
+           "orientation={}&"
+           "min_width={}&"
+           "min_height={}").format(name, orient, args.w, args.h)
     try:
         content = urlopen(url)
     except URLError as err:
@@ -24,7 +23,7 @@ def main():
     else:
         soup = BS(content.read(), "lxml")
         content.close()
-        dir(os.getcwd()+'/images')  # Change directory
+        dir(os.getcwd() + '/images')  # Change directory
         pages = int(soup.find('input', {'name': 'pagi'}).parent.contents[-1]
                     .replace('/', ' ').strip())
         if args.p <= 0:
@@ -35,7 +34,7 @@ def main():
             images_left = args.c
             for i in range(1, ran):
                 print('Downloading from page {}'.format(i))
-                content = urlopen(url+'&pagi={}'.format(i))
+                content = urlopen(url + '&pagi={}'.format(i))
                 soup = BS(content.read(), "lxml")
                 content.close()
                 photo_grid = soup.find('div', {'id': 'photo_grid'})
